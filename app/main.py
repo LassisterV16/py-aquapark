@@ -11,7 +11,7 @@ class IntegerRange:
         self.protected_name = "_" + name
 
     def __get__(self, instance: "IntegerRange", owner: str) -> int:
-        return getattr(instance, self.protected_name)
+        return self.value
 
     def __set__(self, instance: "IntegerRange", value: int) -> None:
         if not isinstance(value, int):
@@ -60,8 +60,7 @@ class Slide:
     def __init__(
             self,
             name: str,
-            limitation_class: [ChildrenSlideLimitationValidator,
-                               AdultSlideLimitationValidator]
+            limitation_class: SlideLimitationValidator
     ) -> None:
         self.name = name
         self.limitation_class = limitation_class
